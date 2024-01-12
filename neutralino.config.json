@@ -1,0 +1,37 @@
+{
+  "applicationId": "ts.neutralino.svelte",
+  "version": "1.0.0",
+  "defaultMode": "window",
+  "documentRoot": "/svelte/build",
+  "url": "/",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "nativeAllowList": [
+    "app.*"
+  ],
+  "modes": {
+    "window": {
+      "title": "Neutralino + Svelte",
+      "width": 800,
+      "height": 500,
+      "minWidth": 400,
+      "minHeight": 200,
+      "icon": "/svelte/public/favicon.png"
+    }
+  },
+  "cli": {
+    "binaryName": "neutralino-svelte",
+    "resourcesPath": "/resources/",
+    "extensionsPath": "/extensions/",
+    "binaryVersion": "4.14.1",
+    "clientVersion": "3.12.0",
+    "frontendLibrary": {
+      "patchFile": "/svelte/src/index.html",
+      "devUrl": "http://localhost:5173",
+      "projectPath": "/svelte/",
+      "initCommand": "npm install",
+      "devCommand": "BROWSER=none npm run dev",
+      "buildCommand": "npm run build"
+    }
+  }
+}
