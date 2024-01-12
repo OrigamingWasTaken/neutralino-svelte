@@ -16,7 +16,8 @@
       "height": 500,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/svelte/public/favicon.png"
+      "icon": "/svelte/public/favicon.png",
+      "enableInspector": true
     }
   },
   "cli": {
@@ -26,7 +27,7 @@
     "binaryVersion": "4.14.1",
     "clientVersion": "3.12.0",
     "frontendLibrary": {
-      "patchFile": "/svelte/src/index.html",
+      "patchFile": "/svelte/index.html",
       "devUrl": "http://localhost:5173",
       "projectPath": "/svelte/",
       "initCommand": "npm install",
