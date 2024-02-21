@@ -1,5 +1,6 @@
 /bun.lockb
 .tmp
+.tmpbuild
 window_state_config.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/svelte,node,macos,windows,linux,git
