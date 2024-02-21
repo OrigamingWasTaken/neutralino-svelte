@@ -2,13 +2,18 @@
   "applicationId": "ts.neutralino.svelte",
   "version": "1.0.0",
   "defaultMode": "window",
-  "documentRoot": "/svelte/dist",
+  "documentRoot": "/frontend/dist",
   "url": "/",
   "enableServer": true,
   "enableNativeAPI": true,
   "nativeAllowList": [
-    "app.*"
+    "events.on","app.exit","debug.log"
   ],
+  "exportAuthInfo": false,
+  "logging": {
+    "writeToLogFile": false,
+    "enabled": true
+  },
   "modes": {
     "window": {
       "title": "Neutralino + Svelte",
@@ -16,23 +21,24 @@
       "height": 500,
       "minWidth": 400,
       "minHeight": 200,
-      "icon": "/svelte/public/favicon.png",
-      "enableInspector": true
+      "icon": "/frontend/public/favicon.png",
+      "exitProcessOnClose": false,
+      "useSavedState": false
     }
   },
   "cli": {
     "binaryName": "neutralino-svelte",
-    "resourcesPath": "/svelte/dist",
+    "resourcesPath": "/frontend/dist",
     "extensionsPath": "/extensions/",
     "binaryVersion": "4.14.1",
     "clientVersion": "3.12.0",
     "frontendLibrary": {
-      "patchFile": "/svelte/index.html",
+      "buildCommand": "npm run neu:checkup",
+      "patchFile": "/frontend/index.html",
       "devUrl": "http://localhost:5173",
-      "projectPath": "/svelte/",
-      "initCommand": "npm install",
-      "devCommand": "BROWSER=none npm run dev",
-      "buildCommand": "npm run build"
+      "devCommand": "npm run vite:dev",
+      "projectPath": "/",
+      "initCommand": "npm install"
     }
   }
 }

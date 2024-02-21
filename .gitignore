@@ -213,7 +213,6 @@ dist
 # website: https://kit.svelte.dev/
 
 .svelte-kit/
-package
 
 ### Windows ###
 # Windows thumbnail cache files
