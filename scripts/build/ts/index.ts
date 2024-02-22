@@ -7,7 +7,7 @@ import {winBuild} from './win-bundle';
 import {Signale} from 'signale';
 import {linuxBuild} from './linux-bundle';
 
-async function main() {
+export async function build() {
 	const initTime = performance.now();
 	const logger = new Signale();
 	fs.rmSync(path.resolve('dist'), {recursive: true, force: true});
@@ -36,4 +36,4 @@ async function main() {
 	logger.success(`Built in ${((performance.now() - initTime) / 1000).toFixed(3)}s`);
 }
 
-main();
+build();
