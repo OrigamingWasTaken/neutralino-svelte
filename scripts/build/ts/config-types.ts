@@ -1,10 +1,11 @@
-type MacArch = 'x64' | 'arm64' | 'universal'
-type LinuxArch = 'x64' | 'arm64' | 'armhf'
+type MacArch = 'x64' | 'arm64' | 'universal';
+type LinuxArch = 'x64' | 'arm64' | 'armhf';
 
 export interface Config {
-    projectPath: string,
-    outDir: string,
+	projectPath: string;
+	outDir: string;
 	appName: string;
+	description: string;
 	appBundleName: string;
 	appIdentifier: string;
 	mac?: {
@@ -19,5 +20,7 @@ export interface Config {
 	linux?: {
 		architecture: LinuxArch[];
 		appIcon: string;
+		appPath: string;
+		appIconPath: string;
 	};
 }

@@ -1,19 +1,39 @@
 import BuildConfig from '@root/build.config';
-import { macBuild } from './mac-bundle';
-import neuConfig from "@root/neutralino.config.json"
-import { copyFolderSync } from './utils';
-import path from "path"
-import fs from "fs"
+import {macBuild} from './mac-bundle';
+import {buildBinaries, copyFolderSync} from './utils';
+import path from 'path';
+import fs from 'fs';
+import {winBuild} from './win-bundle';
+import {Signale} from 'signale';
+import {linuxBuild} from './linux-bundle';
 
 async function main() {
-	fs.rmSync(path.resolve("dist"),{recursive: true, force: true})
-	fs.rmSync(path.resolve(".tmpbuild"),{recursive: true, force: true})
-	if (BuildConfig.mac) {
-        await macBuild()
+	const initTime = performance.now();
+	const logger = new Signale();
+	fs.rmSync(path.resolve('dist'), {recursive: true, force: true});
+	fs.rmSync(path.resolve('.tmpbuild'), {recursive: true, force: true});
+
+	if (!BuildConfig.mac && !BuildConfig.win && !BuildConfig.linux) {
+		console.log('Skipping build, no target set in build.config.ts.');
+		return;
 	}
 
-	fs.rmSync(path.resolve("dist"),{recursive: true, force: true})
-	copyFolderSync(path.resolve(".tmpbuild"),path.resolve("./dist"))
+	await buildBinaries();
+
+	if (BuildConfig.mac) {
+		await macBuild();
+	}
+	if (BuildConfig.win) {
+		await winBuild();
+	}
+	if (BuildConfig.linux) {
+		await linuxBuild();
+	}
+
+	fs.rmSync(path.resolve('dist'), {recursive: true, force: true});
+	copyFolderSync(path.resolve('.tmpbuild'), path.resolve('./dist'));
+	fs.rmSync(path.resolve('.tmpbuild'), {recursive: true, force: true});
+	logger.success(`Built in ${((performance.now() - initTime) / 1000).toFixed(3)}s`);
 }
 
-main()
+main();

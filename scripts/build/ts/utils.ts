@@ -9,7 +9,7 @@ export async function buildBinaries() {
 	await exec("vite build")
 	frontBuildLog.await("Building with Neutralino")
 	await exec("npx neu build")
-	frontBuildLog.info("App binaries were built!")
+	frontBuildLog.complete("App binaries were built!")
 }
 
 export function copyFolderSync(sourceDir: string, targetDir: string) {
@@ -30,3 +30,29 @@ export function copyFolderSync(sourceDir: string, targetDir: string) {
         }
     }
 }
+
+export async function getAllFilesInFolder(folderPath: string): Promise<string[]> {
+    const files: string[] = [];
+  
+    async function readDirectory(directory: string): Promise<void> {
+      const entries = await fs.promises.readdir(directory, { withFileTypes: true });
+  
+      for (const entry of entries) {
+        const entryPath = path.join(directory, entry.name);
+  
+        if (entry.isDirectory()) {
+          await readDirectory(entryPath); // Recursively read subdirectories
+        } else {
+          files.push(entryPath);
+        }
+      }
+    }
+  
+    try {
+      await readDirectory(folderPath);
+      return files;
+    } catch (error) {
+      console.error(`Error reading directory: ${folderPath}`, error);
+      throw error;
+    }
+  }
