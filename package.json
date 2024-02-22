@@ -7,6 +7,7 @@
     "vite:dev": "vite",
     "dev": "vite-node scripts/package/dev.ts",
     "build": "vite-node scripts/build/ts/index.ts",
+    "release": "vite-node scripts/package/releases.ts",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "neu:checkup": ""
   },
