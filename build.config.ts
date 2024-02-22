@@ -15,7 +15,9 @@ const BuildConfig: Config = {
     },
     win: {
         architecture: ["x64"],
-        appIcon: path("./build/assets/win.ico")
+        appIcon: path("./build/assets/win.ico"),
+        // This feature currently doesn't work and takes more space. See https://github.com/neutralinojs/neutralinojs/issues/1120
+        embedResources: true,
     },
     linux: {
         architecture: ["x64","arm64","armhf"],

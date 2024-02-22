@@ -16,6 +16,7 @@ export interface Config {
 	win?: {
 		architecture: 'x64'[];
 		appIcon: string;
+		embedResources: boolean;
 	};
 	linux?: {
 		architecture: LinuxArch[];

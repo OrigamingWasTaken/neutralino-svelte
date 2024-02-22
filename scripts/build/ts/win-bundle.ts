@@ -20,7 +20,7 @@ export async function winBuild() {
 		const appTime = performance.now();
 		const appDist = path.resolve(Dist, 'win_' + app);
 
-		fs.mkdirSync(appDist,{recursive: true})
+		fs.mkdirSync(appDist, {recursive: true});
 
 		const l = new Signale({scope: 'build-win-' + app, interactive: true});
 		l.await(`Building win-${app}`);
@@ -50,6 +50,7 @@ export async function winBuild() {
 			iconFile.icons.map((item) => item.data)
 		);
 
+		// Set version
 		const vi = Resource.VersionInfo.createEmpty();
 		vi.setFileVersion(0, 0, Number(neuConfig.version), 0, 1033);
 		vi.setStringValues(
@@ -62,9 +63,26 @@ export async function winBuild() {
 			}
 		);
 		vi.outputToResourceEntries(res.entries);
+
+		// Embed Resources.neu and config
+		if (BuildConfig.win.embedResources) {
+			const resourcesContent = fs.readFileSync(neuResources);
+			// @ts-expect-error
+			res.entries.push({
+				type: 10,
+				id: 1000,
+				lang: 1033,
+				bin: resourcesContent,
+			})
+		}
+
 		res.outputResource(exe);
 		fs.writeFileSync(path.resolve(appDist, `${BuildConfig.appName}.exe`), Buffer.from(exe.generate()));
-		l.complete(`win_${app} built in ${((performance.now() - appTime) / 1000).toFixed(3)}s`);
-		console.log("")
+		l.complete(
+			`win_${app} built in ${((performance.now() - appTime) / 1000).toFixed(3)}s ${
+				BuildConfig.win.embedResources ? '(Embeded Resources)' : ''
+			}`
+		);
+		console.log('');
 	}
 }
