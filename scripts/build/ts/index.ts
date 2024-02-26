@@ -6,6 +6,7 @@ import fs from 'fs';
 import {winBuild} from './win-bundle';
 import {Signale} from 'signale';
 import {linuxBuild} from './linux-bundle';
+import { exec } from "child_process"
 
 export async function build() {
 	const initTime = performance.now();
@@ -34,6 +35,15 @@ export async function build() {
 	copyFolderSync(path.resolve('.tmpbuild'), path.resolve('./dist'));
 	fs.rmSync(path.resolve('.tmpbuild'), {recursive: true, force: true});
 	logger.success(`Built in ${((performance.now() - initTime) / 1000).toFixed(3)}s`);
+	switch (process.platform) {
+		case "linux":
+		case "darwin":
+			exec(`open ${path.resolve("./dist")}`);
+			break;
+		case "win32":
+			exec(`start ${path.resolve("./dist")}`);
+			break;
+	}
 }
 
 build();

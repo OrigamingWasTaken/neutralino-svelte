@@ -2,16 +2,8 @@ import {defineConfig} from 'vite';
 import {svelte} from '@sveltejs/vite-plugin-svelte';
 import * as path from 'path';
 import {createHtmlPlugin} from 'vite-plugin-html';
-import {readFileSync, existsSync} from 'node:fs';
 
-function getUrl() {
-	try {
-		const {port} = JSON.parse(readFileSync('./.tmp/auth_info.json', 'utf-8'));
-		return `http://localhost:${port}`;
-	} catch {
-		return '%PUBLIC_URL%';
-	}
-}
+const NEU_PORRT = 5174
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,7 +14,7 @@ export default defineConfig({
 			template: 'index.html',
 			inject: {
 				data: {
-					url: getUrl(),
+					url: `http://localhost:5174`
 				},
 			},
 		}),
