@@ -31,6 +31,7 @@ async function main() {
 
 	const args = [
 		'--window-enable-inspector=true',
+		'--export-auth-info',
 		'--load-dir-res',
 		`--path=${path.resolve('.')}`,
 		'--neu-dev-extension',
@@ -43,7 +44,7 @@ async function main() {
 		bpath = path.resolve(`./bin/neutralino-${binaryOS}_${process.arch}`)
 		chmodSync(bpath,"755");
 	} else {
-		bpath = path.resolve(`./bin/neutralino-${binaryOS}_winx64.exe`)
+		bpath = 'start ' + path.resolve(`./bin/neutralino-${binaryOS}_x64.exe`)
 	}
 	
 	await spawn(bpath, args, {
