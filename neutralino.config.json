@@ -7,7 +7,9 @@
   "enableServer": true,
   "enableNativeAPI": true,
   "nativeAllowList": [
-    "events.on","app.exit","debug.log"
+    "events.on",
+    "app.exit",
+    "debug.log"
   ],
   "exportAuthInfo": false,
   "logging": {
@@ -30,7 +32,7 @@
     "binaryName": "neutralino-svelte",
     "resourcesPath": "/frontend/dist",
     "extensionsPath": "/extensions/",
-    "binaryVersion": "4.14.1",
+    "binaryVersion": "5.1.0",
     "clientVersion": "3.12.0",
     "frontendLibrary": {
       "buildCommand": "npm run neu:empty",
