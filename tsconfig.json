@@ -23,6 +23,6 @@
       "@root/*": ["./*"]
     },
   },
-  "include": ["frontend/src/**/*.ts", "frontend/src/**/*.js", "frontend/src/**/*.svelte", "scripts/**/*.ts", "scripts/build/mac-bundle.js", "scripts/build/index.js"],
+  "include": ["frontend/src/**/*.ts", "frontend/src/**/*.js", "frontend/src/**/*.svelte", "scripts/**/*.ts", "scripts/build/mac-bundle.js", "scripts/build/index.js", "scripts/package/vite-plugin.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

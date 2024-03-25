@@ -2,12 +2,12 @@ import { type Config } from "./scripts/build/ts/config-types"
 import { resolve as path } from "path"
 
 const BuildConfig: Config = {
+    devPort: 5174,
     projectPath: path("./frontend/dist"),
     outDir: path("./dist"),
     appName: "Svelte Neutralino",
     description: "An app made with Vite, Svelte and NeutralinoJS",
     appBundleName: "SvelteNeutralino",
-    appIdentifier: "ts.svelte.neutralino",
     mac: {
         architecture: ["universal","arm64","x64"],
         appIcon: path("./build/assets/mac.icns"),
@@ -16,7 +16,7 @@ const BuildConfig: Config = {
     win: {
         architecture: ["x64"],
         appIcon: path("./build/assets/win.ico"),
-        // This feature currently doesn't work and takes more space. See https://github.com/neutralinojs/neutralinojs/issues/1120
+        // embedResources currently doesn't work and takes more space. See https://github.com/neutralinojs/neutralinojs/issues/1120
         embedResources: false,
     },
     linux: {
