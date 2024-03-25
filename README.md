@@ -1,4 +1,4 @@
-<h1 style="display: inline-block;"> <img src=".github/assets/logo.png" style="width:2%;"> Neutralino + Svelte</h1>
+<h1 style="display: inline-block;"> <img src=".github/assets/logo.png" style="width:30px;"> Neutralino + Svelte</h1>
 
 <div align="center">
     <img src=".github/assets/window.png" style="width:75%;">
