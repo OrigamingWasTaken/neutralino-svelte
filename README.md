@@ -1,10 +1,10 @@
+<h1 style="display: inline-block;"> <img src=".github/assets/logo.png" style="width:2%;"> Neutralino + Svelte</h1>
+
 <div align="center">
-    <img src=".github/assets/logo.png" style="width:30%;">
+    <img src=".github/assets/window.png" style="width:75%;">
 </div>
 
 ---
-
-# Neutralino + Svelte
 
 This is a starter template for neutralino that uses **Vite** and **Svelte**. You can directly write your app using svelte!
 
