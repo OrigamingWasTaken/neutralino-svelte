@@ -1,9 +1,9 @@
-import neuConfig from '@root/neutralino.config.json';
-import BuildConfig from '@root/build.config';
+import neuConfig from '$root/neutralino.config.json';
+import BuildConfig from '$root/build.config';
 import fs from 'fs';
 import path from 'path';
-import {Signale} from 'signale';
-import {copyFolderSync} from './utils';
+import { Signale } from 'signale';
+import { copyFolderSync } from './utils';
 
 export async function macBuild() {
 	const logger = new Signale();
@@ -19,7 +19,7 @@ export async function macBuild() {
 		const appTime = performance.now();
 		const appDist = path.resolve(Dist, 'mac_' + app);
 
-		const l = new Signale({scope: 'build-mac-' + app, interactive: true});
+		const l = new Signale({ scope: 'build-mac-' + app, interactive: true });
 		l.await(`Building mac-${app}`);
 
 		const neuResources = path.resolve('dist', neuConfig.cli.binaryName, 'resources.neu');
@@ -36,7 +36,7 @@ export async function macBuild() {
 
 		// Directory Structure
 		const Contents = path.resolve(appDist, `${BuildConfig.appName}.app/Contents`);
-		fs.mkdirSync(Contents, {recursive: true});
+		fs.mkdirSync(Contents, { recursive: true });
 		const MacOS = path.resolve(Contents, 'MacOS');
 		fs.mkdirSync(MacOS);
 		const Resources = path.resolve(Contents, 'Resources');
@@ -70,6 +70,6 @@ export async function macBuild() {
 			copyFolderSync(Libraries, path.resolve(Resources, 'lib'));
 		}
 		l.complete(`mac_${app} built in ${((performance.now() - appTime) / 1000).toFixed(3)}s`);
-		console.log("")
+		console.log('');
 	}
 }
